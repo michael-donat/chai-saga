@@ -1,0 +1,28 @@
+{
+  "name": "chai-saga",
+  "version": "0.0.1",
+  "description": "A Chai.js helper providing simple assertions for redux-saga generators.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michael-donat/chai-saga.git"
+  },
+  "keywords": [
+    "chai",
+    "redux-saga",
+    "helper"
+  ],
+  "author": "Michael Donat <michael.donat@me.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/michael-donat/chai-saga/issues"
+  },
+  "homepage": "https://github.com/michael-donat/chai-saga#readme",
+  "peerDependencies": {
+    "chai": "^3.5.0",
+    "redux-saga": "^0.12.0"
+  }
+}
