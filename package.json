@@ -1,6 +1,6 @@
 {
   "name": "chai-saga",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Chai.js helper providing simple assertions for redux-saga generators.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "chai",
     "redux-saga",
-    "helper"
+    "helper",
+		"test"
   ],
   "author": "Michael Donat <michael.donat@me.com>",
   "license": "GPL-3.0",
