@@ -2,12 +2,19 @@ var effects = require('redux-saga/effects');
 
 module.exports = function(chai, utils) {
 
+	const Generator = (function*(){})().constructor;
+
 	function checkGenerator(asrt) {
+
 		const obj = utils.flag(asrt, 'object');
-		new chai.Assertion(obj.constructor.name).to.be.equal('GeneratorFunctionPrototype');
+
+		new chai.Assertion(obj.constructor).to.be.equal(Generator);
 	}
 
 	function checkYield(asrt, value) {
+
+		checkGenerator(asrt);
+
 		const obj = utils.flag(asrt, 'object');
 		const err = utils.flag(asrt, 'yieldThrow');
 		const push = utils.flag(asrt, 'yieldPush');
@@ -40,11 +47,17 @@ module.exports = function(chai, utils) {
 
 	function assertCallYield() {
 
-		checkGenerator(this)
+		checkGenerator(this);
 		const val = this._obj.next().value;
 
 		if (!arguments.length) {
-			new chai.Assertion(val.CALL).to.exist;
+			this.assert(
+				val.CALL != undefined,
+		  	'expected #{exp} but got #{act}',
+		  	'expected #{exp} to not be #{act}',
+				'(@@redux-saga/IO, CALL)',
+				val
+			);
 			return this;
 		}
 
@@ -74,4 +87,3 @@ module.exports = function(chai, utils) {
 	chai.Assertion.addMethod('finish', assertFinish);
 
 }
-
