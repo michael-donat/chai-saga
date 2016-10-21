@@ -1,6 +1,6 @@
 {
   "name": "chai-saga",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Chai.js helper providing simple assertions for redux-saga generators.",
   "main": "index.js",
   "scripts": {

@@ -11,23 +11,23 @@ module.exports = function(chai, utils) {
 		new chai.Assertion(obj.constructor).to.be.equal(Generator);
 	}
 
-	function checkYield(asrt, value) {
-
-		checkGenerator(asrt);
-
+	function tickGenerator(asrt) {
 		const obj = utils.flag(asrt, 'object');
 		const err = utils.flag(asrt, 'yieldThrow');
 		const push = utils.flag(asrt, 'yieldPush');
+
 		utils.flag(asrt, 'yieldThrow', undefined);
 		utils.flag(asrt, 'yieldPush', undefined);
 
-		let val;
-
 		if (err) {
-			val = obj.throw(err).value;
+			return obj.throw(err).value;
 		} else {
-			val = obj.next(push).value;
+			return obj.next(push).value;
 		}
+	}
+
+	function checkYield(asrt, value) {
+		const val = tickGenerator(asrt);
 
 		new chai.Assertion(val).to.be.deep.equal(value);
 	}
@@ -47,8 +47,8 @@ module.exports = function(chai, utils) {
 
 	function assertCallYield() {
 
-		checkGenerator(this);
-		const val = this._obj.next().value;
+		checkGenerator(this)
+		const val = tickGenerator(this);
 
 		if (!arguments.length) {
 			this.assert(
